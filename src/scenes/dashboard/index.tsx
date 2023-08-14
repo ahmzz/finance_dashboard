@@ -1,12 +1,15 @@
-import { useTheme,Box,useMediaQuery } from '@mui/material'
-import React from 'react'
+import {  Box, useMediaQuery } from "@mui/material";
+import React from "react";
+
+import Row1 from "./Row1";
+import Row2 from "./Row2";
+import Row3 from "./Row3";
 
 const Dashboard = () => {
-    
-  const {palette}=useTheme()
-  const isScreenLarge=useMediaQuery('(min-width:1200px)')
+  
+  const isScreenLarge = useMediaQuery("(min-width:1200px)");
 
-  const gridTemplateLargeScreen=`
+  const gridTemplateLargeScreen = `
     "a b c"
     "a b c"
     "a b c"
@@ -17,9 +20,9 @@ const Dashboard = () => {
     "g h i"
     "g h j"
     "g h j"
-  `
+  `;
 
-  const gridTemplateSmallScreen=`
+  const gridTemplateSmallScreen = `
   "a"
   "a"
   "a"
@@ -50,35 +53,34 @@ const Dashboard = () => {
   "j"
   "j"
   
-  `
+  `;
 
   return (
-    <Box width="100%" height="100%" display="grid" gap="1.1rem"
+    <Box
+      width="100%"
+      height="100%"
+      display="grid"
+      gap="1.1rem"
       sx={
-        isScreenLarge?{
-          gridTemplateColumns:"repeat(3,minmax(350px,1fr))",
-          gridTemplateRows:"repeat(10,minmax(50px,1fr))",
-          gridTemplateAreas:gridTemplateLargeScreen
-        }:{
-          gridAutoColumns:"1fr",
-          gridAutoRows:"70px",
-          gridTemplateAreas:gridTemplateSmallScreen
-        }
+        isScreenLarge
+          ? {
+              gridTemplateColumns: "repeat(3,minmax(350px,1fr))",
+              gridTemplateRows: "repeat(10,minmax(50px,1fr))",
+              gridTemplateAreas: gridTemplateLargeScreen,
+            }
+          : {
+              gridAutoColumns: "1fr",
+              gridAutoRows: "70px",
+              gridTemplateAreas: gridTemplateSmallScreen,
+            }
       }
     >
-      <Box bgcolor="#fff" gridArea="a"></Box>
-      <Box bgcolor="#fff" gridArea="b"></Box>
-      <Box bgcolor="#fff" gridArea="c"></Box>
-      <Box bgcolor="#fff" gridArea="d"></Box>
-      <Box bgcolor="#fff" gridArea="e"></Box>
-      <Box bgcolor="#fff" gridArea="f"></Box>
-      <Box bgcolor="#fff" gridArea="g"></Box>
-      <Box bgcolor="#fff" gridArea="h"></Box>
-      <Box bgcolor="#fff" gridArea="i"></Box>
-      <Box bgcolor="#fff" gridArea="j"></Box>
-
+      <Row1/>
+      <Row2/>
+      <Row3/>
+      
     </Box>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
